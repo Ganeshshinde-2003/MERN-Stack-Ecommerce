@@ -29,7 +29,7 @@ router.get("/product-photo/:pid", productPhotoController);
 router.delete("/delete-product/:pid", deleteProductController);
 
 router.put(
-  "update-product/:pid",
+  "/update-product/:pid",
   requireSignin,
   isAdmin,
   formidable(),
