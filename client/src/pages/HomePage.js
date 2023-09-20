@@ -1,12 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
-import { useAuth } from "../context/auth";
 import axios from "axios";
+import { Checkbox } from "antd";
 
 const HomePage = () => {
-  const [auth] = useAuth();
   const [products, setProducts] = useState([]);
-  const [categories, setCatagories] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [checked, setChecked] = useState([]);
+
+  //get all cat
+  const getAllCategory = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/category/get-category`
+      );
+      if (data?.success) {
+        setCategories(data?.category);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllCategory();
+  }, []);
 
   const getAllProducts = async () => {
     try {
@@ -23,13 +41,34 @@ const HomePage = () => {
     getAllProducts();
   }, []);
 
+  const hanldeFilter = (value, id) => {
+    let all = [...checked];
+    if (value) {
+      all.push(id);
+    } else {
+      all.filter((c) => c !== id);
+    }
+    setChecked(all);
+  };
+
   return (
     <Layout title={"All Products - Best Offers"}>
       <div className="row mt-3">
-        <div className="col-md-3">
+        <div className="col-md-2">
           <h4 className="text-center">Filter By Category</h4>
+          <div className="d-flex flex-column">
+            {categories?.map((c) => (
+              <Checkbox
+                key={c._id}
+                onChange={(e) => hanldeFilter(e.target.checked, c._id)}
+              >
+                {c.name}
+              </Checkbox>
+            ))}
+          </div>
         </div>
         <div className="col-md-9">
+          {JSON.stringify(checked, null, 4)}
           <h1 className="text-center">All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
