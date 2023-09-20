@@ -26,7 +26,7 @@ const Product = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout title={"All Products - Best Offers"}>
       <div className="row">
         <div className="col-md-3">
           <AdminMenu />
