@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
 import axios from "axios";
-import { Checkbox } from "antd";
+import { Checkbox, Radio } from "antd";
+import { Prices } from "../components/Price";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
+  const [radio, setRadio] = useState([]);
 
   //get all cat
   const getAllCategory = async () => {
@@ -38,8 +40,15 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    getAllProducts();
+    if (!checked.length || !radio.length) getAllProducts();
+
+    //eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (checked.length || radio.length) filterProduct();
+    //eslint-disable-next-line
+  }, [checked, radio]);
 
   const hanldeFilter = (value, id) => {
     let all = [...checked];
@@ -49,6 +58,18 @@ const HomePage = () => {
       all.filter((c) => c !== id);
     }
     setChecked(all);
+  };
+
+  const filterProduct = async () => {
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/product/product-filter`,
+        { checked, radio }
+      );
+      setProducts(data.products);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -66,9 +87,26 @@ const HomePage = () => {
               </Checkbox>
             ))}
           </div>
+          <h4 className="text-center mt-4">Filter By Price</h4>
+          <div className="d-flex flex-column">
+            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+              {Prices?.map((product) => (
+                <div key={product._id}>
+                  <Radio value={product.array}>{product.name}</Radio>
+                </div>
+              ))}
+            </Radio.Group>
+          </div>
+          <div className="d-flex flex-column">
+            <button
+              className="btn btn-danger"
+              onClick={() => window.location.reload()}
+            >
+              RESET FILTER
+            </button>
+          </div>
         </div>
         <div className="col-md-9">
-          {JSON.stringify(checked, null, 4)}
           <h1 className="text-center">All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
@@ -80,7 +118,8 @@ const HomePage = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>
-                  <p className="card-text">{p.description}</p>
+                  <p className="card-text">{p.description.substring(0, 30)}</p>
+                  <p className="card-text">${p.price}</p>
                   <button class="btn btn-primary mb-1">More Details</button>
                   <button class="btn btn-secondary">ADD TO CARD</button>
                 </div>
