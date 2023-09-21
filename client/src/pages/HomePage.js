@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
+import { useNavigate } from "react-router-dom";
 import { Prices } from "../components/Price";
 
 const HomePage = () => {
@@ -12,6 +13,7 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const getTotal = async () => {
     try {
@@ -94,6 +96,7 @@ const HomePage = () => {
   useEffect(() => {
     if (page === 1) return;
     loadmore();
+    //eslint-disable-next-line
   }, [page]);
 
   const loadmore = async () => {
@@ -157,9 +160,16 @@ const HomePage = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>
-                  <p className="card-text">{p.description.substring(0, 30)}</p>
+                  <p className="card-text">
+                    {p.description.substring(0, 30)}...
+                  </p>
                   <p className="card-text">${p.price}</p>
-                  <button class="btn btn-primary mb-1">More Details</button>
+                  <button
+                    class="btn btn-primary mb-1"
+                    onClick={() => navigate(`/product/${p.slug}`)}
+                  >
+                    More Details
+                  </button>
                   <button class="btn btn-secondary">ADD TO CARD</button>
                 </div>
               </div>
