@@ -5,7 +5,7 @@ import UserMenu from "../../components/layout/UserMenu";
 const Profile = () => {
   return (
     <Layout title={"Dashboard - your profile"}>
-      <div className="container-fluid m-3 p-3">
+      <div className="container-fluid m-3 p-3 container">
         <div className="row">
           <div className="col-md-3">
             <UserMenu />

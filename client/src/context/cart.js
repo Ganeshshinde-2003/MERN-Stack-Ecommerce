@@ -1,9 +1,14 @@
-import { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext, useEffect } from "react";
 
 const CartContex = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    let exitCart = localStorage.getItem("cart");
+    if (exitCart) setCart(JSON.parse(exitCart));
+  }, []);
 
   return (
     <CartContex.Provider value={[cart, setCart]}>
