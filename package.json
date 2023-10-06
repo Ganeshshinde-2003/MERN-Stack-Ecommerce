@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "braintree": "^3.17.0",
     "colors": "^1.4.0",
     "concurrently": "^8.2.1",
     "cors": "^2.8.5",
