@@ -1,17 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Playfair:opsz,wght@5..1200,700&family=Poppins:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap");
 
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
+
 /* font-family: 'Poppins', sans-serif; */
+/* font-family: 'Playfair Display', serif; */
 
-/* font-family: 'Playfair', serif; */
-
-/* navbar css */
-
+/* //navbar css */
 .navbar {
   font-family: "Poppins", sans-serif;
   font-size: 17px;
@@ -19,43 +17,67 @@
   text-transform: uppercase;
   box-shadow: 0 8px 6px -6px gray;
   --webkit-box-shadow: 0 8px 6px -6px gray;
-  border-bottom: 0px solid gray !important;
+  border-bottom: solid gray !important;
 }
+
 .nav-link {
   font-weight: 300 !important;
 }
+
 .active {
   border-bottom: 2px solid black;
 }
+
 .navbar-brand {
   font-weight: 700;
   font-family: "roboto", sans-serif;
   letter-spacing: 3px;
 }
 
-/* footer css */
+.search-form {
+  margin-right: 10px;
+  margin-top: 4px;
+}
+.search-form input {
+  border: none;
+  border-radius: 0;
+}
+.search-form button {
+  background-color: #000000;
+  border-radius: 0;
+  color: white;
+}
+
+/* =============================
+==========footer============= */
+
 .footer {
   color: white;
   padding: 25px;
-  background: #000000;
-  background: -webkit-linear-gradient(to right, #434343, #000000);
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #434343, #000000);
 }
+
 .footer a {
   text-decoration: none;
   color: white;
   padding: 10px;
 }
+
 .footer a:hover {
   color: #ffefba;
   border-bottom: 1px solid #ffefba;
 }
-
-/* pagenotfound css */
-
+/* =================================
+======== page not found css ======= */
 .pnf {
   display: flex;
-  min-height: 75vh;
+  min-height: 65vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -81,26 +103,42 @@
   background-color: black;
   color: white;
 }
-.container {
-  margin-top: 100px !important;
-}
+/* ========================================= */
+/* =========contact us ========= */
 .contactus {
   margin: 0;
   padding: 0;
-  height: 75vh;
+  height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* .register {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-  flex-direction: column;
-} */
+/* ==================== */
 .product-link {
-  text-decoration: none;
+  text-decoration: none !important;
   color: black !important;
+}
+
+.cat-btn {
+  padding: 40px 0px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.cat-btn:hover {
+  background-color: #434343;
+  color: white;
+}
+/* ================
+====dashboard
+=================== */
+
+.dashboard {
+  margin-top: 100px !important;
+}
+
+.dashboard-menu h4 {
+  background-color: #434343 !important;
+  color: white;
+  padding: 20px 0px;
 }

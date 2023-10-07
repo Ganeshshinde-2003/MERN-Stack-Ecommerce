@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../styles/CategoryProductStyles.css";
 
 const CategoryProduct = () => {
   const [products, setProduct] = useState([]);
@@ -33,7 +34,7 @@ const CategoryProduct = () => {
         <div className="row">
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
-              <div className="card m-2" style={{ width: "18rem" }}>
+              <div className="card m-5" style={{ width: "18rem" }}>
                 <img
                   src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
