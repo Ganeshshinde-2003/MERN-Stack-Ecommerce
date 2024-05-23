@@ -23,17 +23,17 @@ You should have the following software installed on your machine:
 
 ### Clone the Repository 🧬
 
-```bash
-git clone https://github.com/yourusername/mernstackecommerce.git
+```
+git clone https://github.com/Ganeshshinde-2003/MERN-Stack-Ecommerce
 cd mernstackecommerce
 ### Install Dependencies 📦
-
+```
 To install the necessary dependencies, run the following commands:
 
-```bash
+```
 # Install server-side dependencies
 ## Configure Environment Variables ⚙️
-
+```
 Create a `.env` file in the root directory of the project and add the following environment variables:
 
 ```dotenv
@@ -43,19 +43,19 @@ BRAINTREE_MERCHANT_ID=your_braintree_merchant_id
 BRAINTREE_PUBLIC_KEY=your_braintree_public_key
 BRAINTREE_PRIVATE_KEY=your_braintree_private_key
 ## Start the Application ▶️
-
+```
 To run both the server and client concurrently, use the following command:
 
-```bash
+```
 npm run dev
 ## Start the Application ▶️
-
+```
 To run both the server and client concurrently, use the following command:
 
-```bash
+```
 npm run dev
 ## API Endpoints 🚀
-
+```
 Here are the available API endpoints:
 
 - `GET /api/products`: Get a list of all products.
@@ -72,5 +72,7 @@ You can copy and paste this Markdown text into your README.md file on GitHub.
 npm install
 
 # Install client-side dependencies
+```
 cd client
 npm install
+```
